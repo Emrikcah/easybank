@@ -10,6 +10,11 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "astro": "^1.0.3"
+    "astro": "^1.0.3",
+    "autoprefixer": "^10.4.8",
+    "postcss": "^8.4.16"
+  },
+  "dependencies": {
+    "astro-icon": "^0.7.3"
   }
 }

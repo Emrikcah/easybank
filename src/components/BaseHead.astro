@@ -1,5 +1,16 @@
 ---
+const { title } = Astro.props;
 
 ---
 
 
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width" />
+   <link rel="icon" type="image/x-icon" href="/assets/favicon-32x32.png" />
+   <meta name="generator" content={Astro.generator} />
+   <!-- google fonts -->
+
+   <!-- google fonts end  -->
+   <title>{title}</title>
+</head>
