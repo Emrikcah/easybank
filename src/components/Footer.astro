@@ -1,7 +1,107 @@
 ---
+import { Icon } from 'astro-icon'
+import Button from './Button.astro'
+
+
+const data = [
+   {
+      icon: 'icon-facebook',
+      alt: 'facebook',
+      url: 'www.facebook.com'
+   },
+   {
+      icon: 'icon-youtube',
+      alt: 'youtube',
+      url: 'www.youtube.com'
+   },
+   {
+      icon: 'icon-twitter',
+      alt: 'twitter',
+      url: 'www.twitter.com'
+   },
+   {
+      icon: 'icon-pinterest',
+      alt: 'pinterest',
+      url: 'www.pinterest.com'
+   },
+   {
+      icon: 'icon-instagram',
+      alt: 'instagram',
+      url: 'www.instagram.com'
+   },
+]
+
+const listOne = [
+   {
+      name: 'About Us',
+      url: '#'
+   },
+   {
+      name: 'Contact',
+      url: '#'
+   },
+   {
+      name: 'Blog',
+      url: '#',
+   },
+
+]
+
+const listTwo = [
+   {
+      name: 'Careers',
+      url: '#'
+   },
+   {
+      name: 'Support',
+      url: '#'
+   },
+   {
+      name: 'Privacy Policy',
+      url: '#'
+   },
+]
+
 
 ---
 
 <footer>
-   footer
+   <div>
+      <Icon name='logo' width={139} />
+      <div>
+         {data.map(item=>(
+         <a href={item.url}>
+            <Icon name={item.icon} width={20} alt={item.alt} />
+         </a>
+         ))}
+      </div>
+   </div>
+   <nav>
+      <ul>
+         {listOne.map(item=>(
+         <li>
+            <a href={item.url}>{item.name}</a>
+         </li>
+
+         ))}
+      </ul>
+      <ul>
+         {listTwo.map(item=>(
+         <li>
+            <a href={item.url}>{item.name}</a>
+         </li>
+
+         ))}
+      </ul>
+   </nav>
+   
+   <div>
+      <Button/>
+      © Easybank. All Rights Reserved
+   </div>
 </footer>
+<style>
+   footer {
+      background-color: black;
+   }
+</style>

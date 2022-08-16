@@ -1,9 +1,163 @@
 ---
+import { Icon } from 'astro-icon'
+import Button from './Button.astro'
+const navLinks = [
+   {
+      name: 'Home',
+      url: '/',
+   },
+   {
+      name: 'About',
+      url: '#',
+   },
+   {
+      name: 'Contact',
+      url: '#',
+   },
+   {
+      name: 'Blog',
+      url: '#',
+   },
+   {
+      name: 'Careers',
+      url: '#',
+   },
+]
 
+
+
+import close from '../icons/icon-close.svg'
+import hamburger from '../icons/icon-hamburger.svg'
 ---
 
 <header>
-   <nav>
-      nav
-   </nav>
+   <div class="content-container">
+      <nav>
+         <Icon name='logo' class="logo" />
+         <ul class="desktop-links" role='navigation'>
+            {navLinks.map(link =>(
+            <li>
+               <a href={link.url}>{link.name}</a>
+            </li>
+            ))}
+         </ul>
+         <div class="display">
+            <Button />
+         </div>
+         <button class="btn" aria-expanded="false" aria-label="Open mobile nav">
+            <img src='src/icons/icon-hamburger.svg' alt="hamburger button">
+         </button>
+         <!-- dropdown mobile nav -->
+         <ul class="mobile-links">
+            {navLinks.map(link =>(
+            <li>
+               <a href={link.url}>{link.name}</a>
+            </li>
+            ))}
+         </ul>
+         <!-- dropdown mobile nav end -->
+      </nav>
+      
+   </div>
+   <div class="overlay"></div>
 </header>
+
+<style>
+   header {
+      position: relative;
+      background-color: var(--grayish-blue);
+   }
+
+   a {
+      font-size: var(--fs-650);
+      line-height: var(--fh-50);
+      letter-spacing: var(--fls-50);
+   }
+
+   nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 22px;
+      padding-bottom: 22px;
+   }
+
+   .desktop-links {
+      display: none;
+   }
+
+   /* Mobile nav */
+   .mobile-links {
+      
+      position: absolute;
+      top: 100px;
+      width: 327px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      row-gap: 24px;
+      background-color: red;
+      padding-top: 32px;
+      padding-bottom: 32px;
+      border-radius: 10px;
+      transform: translateY(-200%); 
+      transition: transform .5s ease-in-out;
+   }
+
+   .btn[aria-expanded="true"] + .mobile-links {
+      transform: translateY(0); 
+      
+   }
+
+   /* Mobile nav end */
+
+   .btn {
+      background: transparent;
+      border-color: transparent;
+   }
+
+   .logo {
+      height: 20px;
+   }
+
+   /* for the button component */
+   .display {
+      display: none;
+   }
+
+   @media(min-width: 500px) {
+      .btn {
+         display: none;
+      }
+
+      /* for the button component */
+      .display {
+         display: block;
+      }
+
+      /* Mobile nav */
+      .mobile-links {
+         display: none;
+      }
+
+      /* Mobile nav end */
+   }
+</style>
+
+<script is:inline>
+   const btn = document.querySelector('.btn');
+   //used for image swap function
+   const btnChild = btn.children[0];
+   btn.addEventListener('click', function () {
+      btn.setAttribute('aria-expanded', btn.getAttribute('aria-expanded') === 'false' ? 'true' : 'false')
+      imgSwap(btnChild)
+   })
+
+   function imgSwap(btnChild) {
+      if (btnChild.src.match('src/icons/icon-hamburger.svg')) {
+         btnChild.src = 'src/icons/icon-close.svg'
+      } else {
+         btnChild.src = 'src/icons/icon-hamburger.svg'
+      }
+   }
+</script>

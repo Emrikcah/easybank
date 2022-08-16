@@ -1,0 +1,98 @@
+:root {
+   --dark-blue: hsl(233, 26%, 24%);
+   --lime-green: hsl(136, 65%, 51%);
+   --bright-cyan: hsl(192, 70%, 51%);
+
+   --grayish-blue: hsl(233, 8%, 62%);
+   --light-grayish-blue: hsl(220, 16%, 96%);
+   --very-light-gray: hsl(0, 0%, 98%);
+   --white: hsl(0, 0%, 100%);
+
+   --fw-light: 300;
+   --fw-regular: 400;
+   --fw-bold: 700;
+
+   --fs-50: 1rem;
+   --fs-75: 1.3rem;
+   --fs-100: 1.5rem;
+   --fs-600: 1.6rem;
+   --fs-650: 1.8rem;
+   --fs-700: 2rem;
+   --fs-750: 2.4rem;
+   --fs-800: 3.2rem;
+   --fs-900: 4rem;
+   --fs-1000: 5.6rem;
+
+   --fh-50: 1.8rem;
+   --fh-100: 2.5rem;
+   --fh-600: 2rem;
+   --fh-700: 2.8rem;
+   --fh-800: 3.67rem;
+   --fh-900: 4.7rem;
+   --fh-1000: 6.4rem;
+
+   --fls-50: -0.016rem;
+   --fls-75: -0.02rem;
+   --fls-100: -0.023rem;
+   --fls-600: -0.029rem;
+   --fls-700: -0.036rem;
+   --fls-750: -0.043rem;
+   --fls-800: -0.057rem;
+   --fls-900: -0.071rem;
+   --fls-1000: -0.1rem;
+}
+
+*,
+*::before,
+*::after {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+   font: inherit;
+}
+
+html {
+   font-size: 62.5%;
+}
+
+body {
+   /* font-size: 1.8rem; */
+   font-family: "Public Sans", sans-serif;
+   height: 100vh;
+}
+
+ul {
+   list-style-type: none;
+}
+
+a {
+   text-decoration: none;
+}
+
+img,
+picture,
+svg {
+   max-width: 100%;
+   display: block;
+}
+
+.max-width {
+   max-width: 375px;
+}
+
+@media (min-width: 1000px) {
+   .max-width {
+      max-width: 1440px;
+   }
+}
+
+.content-container {
+   max-width: 327px;
+   margin: auto;
+}
+
+@media (min-width: 1000px) {
+   .content-container {
+      max-width: 1110px;
+   }
+}
