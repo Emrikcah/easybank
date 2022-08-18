@@ -105,8 +105,16 @@ import hamburger from '../icons/icon-hamburger.svg'
       opacity: 0;
       transition: opacity .15s ease-in-out;
    }
-   
-   .mobile-links a{
+
+   .desktop-links a {
+      color: var(--grayish-blue);
+   }
+
+   .desktop-links a:hover {
+      color: var(--dark-blue);
+   }
+
+   .mobile-links a {
       color: var(--dark-blue);
 
    }
@@ -127,7 +135,7 @@ import hamburger from '../icons/icon-hamburger.svg'
       transition: opacity .15s ease-in-out;
    }
 
-   .btn[aria-expanded="true"] ~ .overlay {
+   .btn[aria-expanded="true"]~.overlay {
       opacity: 1;
    }
 
@@ -149,10 +157,41 @@ import hamburger from '../icons/icon-hamburger.svg'
 
    @media(min-width: 500px) {
 
-      nav{
-         padding-top: 30px;
-      padding-bottom: 30px;
+      nav {
+         /* padding-top: 20px;
+         padding-bottom: 20px; */
+         max-height: 80px;
       }
+
+      .desktop-links {
+         display: flex;
+         column-gap: 30px;
+      }
+
+      /* desktop hover effect */
+      .desktop-links li{
+         position: relative;
+      }
+
+      .desktop-links li:after{
+         content: '';
+         position: absolute;
+         height: 5px;
+         width: 0;
+         background: var(--lime-green);
+         bottom: -30px;
+         right: 0%;
+         transition: .15s;
+      }
+
+      .desktop-links li:hover:after{
+         width: 100%;
+         left: 0%;
+      }
+
+      /* desktop hover effect end */
+
+
       .btn {
          display: none;
       }
@@ -167,7 +206,7 @@ import hamburger from '../icons/icon-hamburger.svg'
          display: none;
       }
 
-      .overlay{
+      .overlay {
          display: none;
       }
 
@@ -177,7 +216,7 @@ import hamburger from '../icons/icon-hamburger.svg'
 
 <script is:inline>
    const btn = document.querySelector('.btn');
-   //used for image swap function
+   //btnChild used for image swap function
    const btnChild = btn.children[0];
    btn.addEventListener('click', function () {
       btn.setAttribute('aria-expanded', btn.getAttribute('aria-expanded') === 'false' ? 'true' : 'false')
