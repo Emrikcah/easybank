@@ -51,6 +51,7 @@
    font: inherit;
 }
 
+
 html {
    font-size: 62.5%;
 }
@@ -89,7 +90,7 @@ svg {
 
 .content-container {
    max-width: 327px;
-   margin: auto;
+   margin:  0 auto;
 }
 
 @media (min-width: 1000px) {

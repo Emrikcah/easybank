@@ -1,13 +1,72 @@
 ---
 import Button from './Button.astro'
 
+import mockup from '/assets/image-mockups.png'
+import desktop from '/assets/bg-intro-desktop.svg'
+import mobile from '/assets/bg-intro-mobile.svg'
 ---
 
-<main>
-   <section>
-      <h1>Next generation digital banking</h1>
-      <p>Take your financial life online. Your Easybank account will be a one-stop-shop for spending, saving, budgeting,
-         investing, and much more.</p>
-     <Button />
-   </section>
-</main>
+<section>
+   <div class="img-mockup"></div>
+   <div class="content-container">
+      <div class="content">
+         <h1>Next generation digital banking</h1>
+         <p>Take your financial life online. Your Easybank account will be a one-stop-shop for spending, saving,
+            budgeting,
+            investing, and much more.</p>
+         <Button />
+      </div>
+   </div>
+</section>
+
+
+<style>
+   section {
+      z-index: -5;
+      padding-bottom: 88px;
+      
+   }
+   
+   h1 {
+      font-size: var(--fs-900);
+      font-weight: var(--fw-light);
+      color: var(--dark-blue);
+      margin-bottom: 1.6rem;
+   }
+   
+   p {
+      font-size: var(--fs-100);
+      line-height: var(--fh-100);
+      font-weight: var(--fw-regular);
+      color: var(--grayish-blue);
+      margin-bottom: 3.2rem;
+   }
+   
+   .content {
+      text-align: center;
+   }
+   .img-mockup {
+      position: relative;
+      background-image: url('/assets/bg-intro-mobile.svg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      min-height: 300px;
+   }
+
+   .img-mockup::before {
+      content: "";
+      position: absolute;
+      background-image: url('/assets/image-mockups.png');
+      background-size: 90%;
+      background-repeat: no-repeat;
+      background-position-x: center;
+      background-position-y: -120px;
+      height: 100%;
+      width: 100%;
+   }
+
+  
+</style>
+
+<!-- todo: img postioning -->
