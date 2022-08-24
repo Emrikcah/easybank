@@ -39,21 +39,81 @@ const data = [
 ---
 
 <section>
-   <div>
-
-      <h2>Latest Articles</h2>
-   </div>
-   {
-   data.map(item=>(
-   <div>
-      <img src={item.picture} alt={item.alt} />
+   <div class="content content-container">
       <div>
-         <p>{item.name}</p>
-         <h3>{item.title}</h3>
-         <p>{item.content}</p>
+         <h2>Latest Articles</h2>
+      </div>
+      <div class="grid">
+         {
+         data.map(item=>(
+         <article class="card">
+            <img src={item.picture} alt={item.alt} />
+            <div class="card-text">
+               <p class="card-name"> By {item.name}</p>
+               <h3>{item.title}</h3>
+               <p class="card-content">{item.content}</p>
+            </div>
+         </article>
+         ))
+         }
       </div>
    </div>
-   ))
-   }
 
 </section>
+
+<style>
+   section{
+      padding-top: 88px;
+      padding-bottom: 88px;
+      background-color: var(--very-light-gray);
+   }
+
+   h2{
+      text-align: center;
+      font-weight: var(--fw-light);
+      font-size: var(--fs-800);
+      line-height: var(--fh-800);
+      letter-spacing: var(--fls-800);
+      margin-bottom: 31px;
+   }
+
+   h3{
+      font-weight: var(--fw-light);
+      font-size: var(--fs-600);
+      line-height: var(--fh-50);
+      letter-spacing: var(--fls-600);
+      margin-bottom: 8px;
+   }
+
+   .grid{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+   }
+
+   .card{
+      border-radius: 5px;
+      overflow: hidden;
+   }
+
+   .card-text{
+      background-color: var(--white);
+      padding: 24px 31px;
+   }
+
+   .card-name{
+      font-weight: var(--fw-regular);
+      font-size: var(--fs-50);
+      line-height: var(--fh-50);
+      letter-spacing: var(--fls-50);
+      margin-bottom: 8px;
+   }
+
+   .card-content{
+      font-weight: var(--fw-regular);
+      font-size: var(--fs-75);
+      line-height: var(--fh-50);
+      letter-spacing: var(--fls-75);
+   }
+
+</style>
