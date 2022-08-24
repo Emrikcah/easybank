@@ -84,6 +84,7 @@ svg {
 
 .max-width {
    max-width: 375px;
+   margin-inline: auto;
 }
 
 @media (min-width: 1000px) {

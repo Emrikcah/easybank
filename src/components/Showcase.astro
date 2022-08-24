@@ -1,53 +1,54 @@
 ---
-import Button from './Button.astro'
+import Button from "./Button.astro";
 
-import mockup from '/assets/image-mockups.png'
-import desktop from '/assets/bg-intro-desktop.svg'
-import mobile from '/assets/bg-intro-mobile.svg'
+import mockup from "/assets/image-mockups.png";
+import desktop from "/assets/bg-intro-desktop.svg";
+import mobile from "/assets/bg-intro-mobile.svg";
 ---
 
 <section>
    <div class="img-mockup"></div>
-   <div class="content-container">
-      <div class="content">
+   <div class="content content-container">
+      
          <h1>Next generation digital banking</h1>
-         <p>Take your financial life online. Your Easybank account will be a one-stop-shop for spending, saving,
-            budgeting,
-            investing, and much more.</p>
+         <p>
+            Take your financial life online. Your Easybank account will be a
+            one-stop-shop for spending, saving, budgeting, investing, and much
+            more.
+         </p>
          <Button />
-      </div>
+     
    </div>
 </section>
-
 
 <style>
    section {
       z-index: -5;
       padding-bottom: 88px;
-      
+      background-color: var(--very-light-gray);
    }
-   
+
    h1 {
       font-size: var(--fs-900);
       font-weight: var(--fw-light);
       color: var(--dark-blue);
       margin-bottom: 1.6rem;
    }
-   
+
    p {
       font-size: var(--fs-100);
       line-height: var(--fh-100);
       font-weight: var(--fw-regular);
-      color: var(--grayish-blue);
       margin-bottom: 3.2rem;
    }
-   
+
    .content {
       text-align: center;
    }
+
    .img-mockup {
       position: relative;
-      background-image: url('/assets/bg-intro-mobile.svg');
+      background-image: url("/assets/bg-intro-mobile.svg");
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
@@ -57,7 +58,7 @@ import mobile from '/assets/bg-intro-mobile.svg'
    .img-mockup::before {
       content: "";
       position: absolute;
-      background-image: url('/assets/image-mockups.png');
+      background-image: url("/assets/image-mockups.png");
       background-size: 90%;
       background-repeat: no-repeat;
       background-position-x: center;
@@ -66,7 +67,49 @@ import mobile from '/assets/bg-intro-mobile.svg'
       width: 100%;
    }
 
-  
+   /* large screen content */
+   @media (min-width: 1439px) {
+      section {
+         display: grid;
+         grid-template-columns: 700px 1fr;
+         align-items: center;
+         padding-bottom: 0;
+      }
+
+      h1{
+         font-size: var(--fs-1000);
+         line-height: var(--fh-1000);
+         letter-spacing: var(--fls-1000);
+      }
+
+      p{
+         font-size: var(--fs-650);
+         line-height: var(--fh-700);
+         letter-spacing: var(--fls-600);
+      }
+
+      .img-mockup {
+         background-image: url("/assets/bg-intro-desktop.svg");
+         background-position-x: -60px;
+         background-position-y: -250px;
+         background-size: 1233px;
+         min-height: 676px;
+         
+      }
+
+      .img-mockup::before {
+         background-size: 800px;
+         background-position-x: 102px;
+         height: 130%;
+      }
+
+      .content {
+         grid-row: 1;
+         max-width: 447px;
+         text-align: left;
+      }
+   }
+   /* large screen content end */
 </style>
 
-<!-- todo: img postioning -->
+<!-- todo: img postioning on desktop -->
