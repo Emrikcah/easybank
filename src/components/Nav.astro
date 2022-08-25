@@ -1,74 +1,69 @@
 ---
-import { Icon } from 'astro-icon'
-import Button from './Button.astro'
+import { Icon } from "astro-icon";
+import Button from "./Button.astro";
 const navLinks = [
    {
-      name: 'Home',
-      url: '/',
+      name: "Home",
+      url: "/",
    },
    {
-      name: 'About',
-      url: '#',
+      name: "About",
+      url: "#",
    },
    {
-      name: 'Contact',
-      url: '#',
+      name: "Contact",
+      url: "#",
    },
    {
-      name: 'Blog',
-      url: '#',
+      name: "Blog",
+      url: "#",
    },
    {
-      name: 'Careers',
-      url: '#',
+      name: "Careers",
+      url: "#",
    },
-]
-
-
-
-import close from '../icons/icon-close.svg'
-import hamburger from '../icons/icon-hamburger.svg'
+];
 ---
 
 <header>
    <div class="content-container">
       <nav>
-         <Icon name='logo' class="logo" />
-         <ul class="desktop-links" role='navigation'>
-            {navLinks.map(link =>(
-            <li>
-               <a href={link.url}>{link.name}</a>
-            </li>
-            ))}
+         <Icon name="logo" class="logo" />
+         <ul class="desktop-links" role="navigation">
+            {
+               navLinks.map((link) => (
+                  <li>
+                     <a href={link.url}>{link.name}</a>
+                     </li>
+                     ))
+                  }
          </ul>
          <div class="display">
             <Button />
          </div>
          <button class="btn" aria-expanded="false" aria-label="Open mobile nav">
-            <img src='src/icons/icon-hamburger.svg' alt="hamburger button">
+            <img src="src/icons/icon-hamburger.svg" alt="hamburger button" />
          </button>
          <!-- dropdown mobile nav -->
          <ul class="mobile-links">
-            {navLinks.map(link =>(
-            <li>
-               <a href={link.url}>{link.name}</a>
-            </li>
-            ))}
+            {
+               navLinks.map((link) => (
+                  <li>
+                     <a href={link.url}>{link.name}</a>
+                     </li>
+                     ))
+                  }
          </ul>
          <!-- dropdown mobile nav end -->
-
          <div class="overlay"></div>
       </nav>
-
    </div>
 </header>
 
 <style>
-   
    header {
       position: relative;
       background-color: var(--white);
-
    }
 
    a {
@@ -90,6 +85,17 @@ import hamburger from '../icons/icon-hamburger.svg'
    }
 
    /* Mobile nav */
+   .desktop-links a {
+      color: var(--grayish-blue);
+   }
+
+   .desktop-links a:hover {
+      color: var(--dark-blue);
+   }
+
+   .mobile-links a {
+      color: var(--dark-blue);
+   }
    .mobile-links {
       z-index: 10;
       position: absolute;
@@ -104,39 +110,30 @@ import hamburger from '../icons/icon-hamburger.svg'
       padding-bottom: 32px;
       border-radius: 7px;
       opacity: 0;
-      transition: opacity .15s ease-in-out;
+      transition: opacity 0.15s ease-in-out;
    }
 
-   .desktop-links a {
-      color: var(--grayish-blue);
-   }
-
-   .desktop-links a:hover {
-      color: var(--dark-blue);
-   }
-
-   .mobile-links a {
-      color: var(--dark-blue);
-
-   }
-
-   .btn[aria-expanded="true"]+.mobile-links {
+   .btn[aria-expanded="true"] + .mobile-links {
       opacity: 1;
    }
 
    .overlay {
       position: fixed;
-      z-index: -1;
-      top: 0;
+      z-index: 1;
+      top: 64px;
       bottom: 0;
       right: 0;
       left: 0;
-      background: linear-gradient(180deg, #2D314D 0%, rgba(45, 49, 77, 0.0001) 100%);
+      background-image: linear-gradient(
+         180deg,
+         #2d314d 0%,
+         rgba(45, 49, 77, 0.0001) 100%
+      );
       opacity: 0;
-      transition: opacity .15s ease-in-out;
+      transition: opacity 0.15s ease-in-out;
    }
 
-   .btn[aria-expanded="true"]~.overlay {
+   .btn[aria-expanded="true"] ~ .overlay {
       opacity: 1;
    }
 
@@ -156,8 +153,7 @@ import hamburger from '../icons/icon-hamburger.svg'
       display: none;
    }
 
-   @media(min-width: 500px) {
-
+   @media (min-width: 500px) {
       nav {
          /* padding-top: 20px;
          padding-bottom: 20px; */
@@ -170,28 +166,27 @@ import hamburger from '../icons/icon-hamburger.svg'
       }
 
       /* desktop hover effect */
-      .desktop-links li{
+      .desktop-links li {
          position: relative;
       }
 
-      .desktop-links li:after{
-         content: '';
+      .desktop-links li:after {
+         content: "";
          position: absolute;
          height: 5px;
          width: 0;
          background: var(--lime-green);
          bottom: -30px;
          right: 0%;
-         transition: .15s;
+         transition: 0.15s;
       }
 
-      .desktop-links li:hover:after{
+      .desktop-links li:hover:after {
          width: 100%;
          left: 0%;
       }
 
       /* desktop hover effect end */
-
 
       .btn {
          display: none;
@@ -216,19 +211,22 @@ import hamburger from '../icons/icon-hamburger.svg'
 </style>
 
 <script is:inline>
-   const btn = document.querySelector('.btn');
+   const btn = document.querySelector(".btn");
    //btnChild used for image swap function
    const btnChild = btn.children[0];
-   btn.addEventListener('click', function () {
-      btn.setAttribute('aria-expanded', btn.getAttribute('aria-expanded') === 'false' ? 'true' : 'false')
-      imgSwap(btnChild)
-   })
+   btn.addEventListener("click", function () {
+      btn.setAttribute(
+         "aria-expanded",btn.getAttribute("aria-expanded") === "false" ? "true" : "false"
+      );
+      imgSwap(btnChild);
+      
+   });
 
    function imgSwap(btnChild) {
-      if (btnChild.src.match('src/icons/icon-hamburger.svg')) {
-         btnChild.src = 'src/icons/icon-close.svg'
+      if (btnChild.src.match("src/icons/icon-hamburger.svg")) {
+         btnChild.src = "src/icons/icon-close.svg";
       } else {
-         btnChild.src = 'src/icons/icon-hamburger.svg'
+         btnChild.src = "src/icons/icon-hamburger.svg";
       }
    }
 </script>
