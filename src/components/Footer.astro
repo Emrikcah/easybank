@@ -66,47 +66,45 @@ const listTwo = [
 ---
 
 <footer>
-   <div>
-      <div class="move-icon">
-         <Icon name='logo' class='logo' width={139} />
+   <div class="content-container flex-grid">
+      <div class="flex-header">
+         <div class="move-icon">
+            <Icon name='logo' class='logo' width={139} />
+         </div>
+         <div class="icons">
+            {data.map(item=>(
+            <a href={item.url}>
+               <Icon name={item.icon} width={24} alt={item.alt} class='icon-item' />
+            </a>
+            ))}
+         </div>
       </div>
-      <div class="icons">
-         {data.map(item=>(
-         <a href={item.url}>
-            <Icon name={item.icon} width={24} alt={item.alt} class='icon-item' />
-         </a>
-         ))}
+      <nav class="flex">
+         <ul class="list-one">
+            {listOne.map(item=>(
+            <li>
+               <a href={item.url}>{item.name}</a>
+            </li>
+            ))}
+         </ul>
+         <ul class="list-two">
+            {listTwo.map(item=>(
+            <li>
+               <a href={item.url}>{item.name}</a>
+            </li>
+            ))}
+         </ul>
+      </nav>
+      
+      <div >
+         <Button/>
+         <p>© Easybank. All Rights Reserved</p>
       </div>
-   </div>
-   <nav>
-      <ul class="list-one">
-         {listOne.map(item=>(
-         <li>
-            <a href={item.url}>{item.name}</a>
-         </li>
-
-         ))}
-      </ul>
-      <ul class="list-two">
-         {listTwo.map(item=>(
-         <li>
-            <a href={item.url}>{item.name}</a>
-         </li>
-
-         ))}
-      </ul>
-   </nav>
-   
-   <div>
-      <Button/>
-      <p>© Easybank. All Rights Reserved</p>
    </div>
 </footer>
 <style lang="css">
    footer {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 32px;
+     
       text-align: center;
       background-color: var(--dark-blue);
       padding: 40px 75px;
@@ -129,6 +127,18 @@ const listTwo = [
       line-height: var(--fh-700);
       letter-spacing: var(--fls-100);
       margin-top: 24px;
+   }
+
+   ul{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+   }
+
+   .flex-grid{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
    }
 
    .logo{
@@ -156,7 +166,28 @@ const listTwo = [
       fill: var(--lime-green);
    }
 
-   
+   @media(min-width: 1439px){
+      a{
+         line-height: 0;
+      }
+      .flex-grid{
+         display: flex;
+      }
+
+      .flex-header{
+         display: flex;
+         flex-direction: column;
+         justify-content: space-between;
+         margin-right: 90px;
+      }
+
+      .flex{
+         display: flex;
+         gap: 120px;
+         margin-right: auto;
+         text-align: left;
+      }
+   }
 
    
 </style>
