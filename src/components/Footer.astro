@@ -67,17 +67,19 @@ const listTwo = [
 
 <footer>
    <div>
-      <Icon name='logo' width={139} />
-      <div>
+      <div class="move-icon">
+         <Icon name='logo' class='logo' width={139} />
+      </div>
+      <div class="icons">
          {data.map(item=>(
          <a href={item.url}>
-            <Icon name={item.icon} width={20} alt={item.alt} />
+            <Icon name={item.icon} width={24} alt={item.alt} class='icon-item' />
          </a>
          ))}
       </div>
    </div>
    <nav>
-      <ul>
+      <ul class="list-one">
          {listOne.map(item=>(
          <li>
             <a href={item.url}>{item.name}</a>
@@ -85,7 +87,7 @@ const listTwo = [
 
          ))}
       </ul>
-      <ul>
+      <ul class="list-two">
          {listTwo.map(item=>(
          <li>
             <a href={item.url}>{item.name}</a>
@@ -97,11 +99,64 @@ const listTwo = [
    
    <div>
       <Button/>
-      © Easybank. All Rights Reserved
+      <p>© Easybank. All Rights Reserved</p>
    </div>
 </footer>
-<style>
+<style lang="css">
    footer {
-      background-color: black;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      text-align: center;
+      background-color: var(--dark-blue);
+      padding: 40px 75px;
    }
+
+   a{
+      font-weight: var(--fw-regular);
+      font-size: var(--fs-100);
+      line-height: var(--fh-700);
+      letter-spacing: var(--fls-100);
+      color: var(--white);
+   }
+   a:hover{
+      color: var(--lime-green);
+   }
+
+   p{
+      font-weight: var(--fw-regular);
+      font-size: var(--fs-100);
+      line-height: var(--fh-700);
+      letter-spacing: var(--fls-100);
+      margin-top: 24px;
+   }
+
+   .logo{
+      fill: var(--white);
+   }
+   
+   .move-icon{
+      margin-bottom: 32px;
+      display: flex;
+      justify-content: center;
+   }
+
+   .icons{
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+   }
+  
+   .icon-item{
+      fill: var(--white);
+
+   }
+
+   .icon-item:hover{
+      fill: var(--lime-green);
+   }
+
+   
+
+   
 </style>
