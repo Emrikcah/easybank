@@ -34,9 +34,9 @@ const navLinks = [
                navLinks.map((link) => (
                   <li>
                      <a href={link.url}>{link.name}</a>
-                     </li>
-                     ))
-                  }
+                  </li>
+               ))
+            }
          </ul>
          <div class="display">
             <Button />
@@ -50,9 +50,9 @@ const navLinks = [
                navLinks.map((link) => (
                   <li>
                      <a href={link.url}>{link.name}</a>
-                     </li>
-                     ))
-                  }
+                  </li>
+               ))
+            }
          </ul>
          <!-- dropdown mobile nav end -->
          <div class="overlay"></div>
@@ -76,8 +76,7 @@ const navLinks = [
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-top: 22px;
-      padding-bottom: 22px;
+      min-height: 64px;
    }
 
    .desktop-links {
@@ -142,8 +141,6 @@ const navLinks = [
    .btn {
       background: transparent;
       border-color: transparent;
-      width: 24px;
-      height: 11px;
    }
 
    .logo {
@@ -214,21 +211,48 @@ const navLinks = [
 
 <script is:inline>
    const btn = document.querySelector(".btn");
-   //btnChild used for image swap function
+   const body = document.body;
    const btnChild = btn.children[0];
+
    btn.addEventListener("click", function () {
       btn.setAttribute(
-         "aria-expanded",btn.getAttribute("aria-expanded") === "false" ? "true" : "false"
+         "aria-expanded",
+         btn.getAttribute("aria-expanded") === "false" ? "true" : "false"
       );
-      imgSwap(btnChild);
-      
+      let attributeValue = btn.getAttribute("aria-expanded");
+      imgSwap(body, btnChild);
+      removeClass(body, attributeValue);
    });
 
-   function imgSwap(btnChild) {
+   function imgSwap(body, btnChild) {
+      
+      //toggle class on body to stop scrolling when overlay is active
       if (btnChild.src.match("src/icons/icon-hamburger.svg")) {
+         body.classList.add("overlay-scroll-stop");
          btnChild.src = "src/icons/icon-close.svg";
       } else {
+         body.classList.remove("overlay-scroll-stop");
          btnChild.src = "src/icons/icon-hamburger.svg";
       }
    }
+
+   //check if body has overlay class
+   //remove class on body if menu is left open and > 700
+   //if attributevalue is true (menu open) and window.innerwidth < 500 add the class back
+   function removeClass(body, attributeValue) {
+      if (body.classList.contains("overlay-scroll-stop")) {
+         window.addEventListener("resize", function () {
+            if (window.innerWidth > 700) {
+               body.classList.remove("overlay-scroll-stop");
+            }
+         });
+      }
+
+      window.addEventListener("resize", function () {
+         if (attributeValue === 'true' && window.innerWidth < 500) {
+            body.classList.add("overlay-scroll-stop");
+         }
+      });
+   }
 </script>
+

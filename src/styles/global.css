@@ -60,6 +60,7 @@ body {
    /* font-size: 1.8rem; */
    font-family: "Public Sans", sans-serif;
    height: 100vh;
+   
 }
 
 ul {
@@ -81,6 +82,10 @@ svg {
    max-width: 100%;
    display: block;
 }
+
+.overlay-scroll-stop{
+   overflow: hidden;
+ }
 
 .max-width {
    max-width: 375px;
