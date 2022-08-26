@@ -109,12 +109,12 @@ const navLinks = [
       padding-top: 32px;
       padding-bottom: 32px;
       border-radius: 7px;
-      opacity: 0;
-      transition: opacity 0.15s ease-in-out;
+      visibility: hidden;
+      transition: visibility 0.15s ease-in-out;
    }
 
    .btn[aria-expanded="true"] + .mobile-links {
-      opacity: 1;
+      visibility: visible;
    }
 
    .overlay {
@@ -142,6 +142,8 @@ const navLinks = [
    .btn {
       background: transparent;
       border-color: transparent;
+      width: 24px;
+      height: 11px;
    }
 
    .logo {
