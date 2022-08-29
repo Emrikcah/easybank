@@ -1,6 +1,10 @@
 ---
 import { Icon } from "astro-icon";
+
+import ham from '../icons/icon-hamburger.svg'
+import close from '../icons/icon-close.svg'
 import Button from "./Button.astro";
+
 const navLinks = [
    {
       name: "Home",
@@ -207,7 +211,8 @@ const navLinks = [
    }
 </style>
 
-<script is:inline>
+<script is:inline define:vars={{ham,close}}>
+
    const btn = document.querySelector(".btn");
    const body = document.body;
    const btnChild = btn.children[0];
@@ -223,14 +228,13 @@ const navLinks = [
    });
 
    function imgSwap(body, btnChild) {
-      
       //toggle class on body to stop scrolling when overlay is active
-      if (btnChild.src.match("src/icons/icon-hamburger.svg")) {
+      if (btnChild.src.match(ham)) {
          body.classList.add("overlay-scroll-stop");
-         btnChild.src = "src/icons/icon-close.svg";
+         btnChild.src = `${close}`;
       } else {
          body.classList.remove("overlay-scroll-stop");
-         btnChild.src = "src/icons/icon-hamburger.svg";
+         btnChild.src = `${ham}`;
       }
    }
 
@@ -247,10 +251,9 @@ const navLinks = [
       }
 
       window.addEventListener("resize", function () {
-         if (attributeValue === 'true' && window.innerWidth < 500) {
+         if (attributeValue === "true" && window.innerWidth < 500) {
             body.classList.add("overlay-scroll-stop");
          }
       });
    }
 </script>
-
