@@ -221,7 +221,7 @@ const navLinks = [
       );
       let attributeValue = btn.getAttribute("aria-expanded");
       imgSwap(body, btnChild);
-      removeClass(body, attributeValue);
+      addRemoveClass(body, attributeValue);
    });
 
    function imgSwap(body, btnChild) {
@@ -239,7 +239,7 @@ const navLinks = [
    //check if body has overlay class
    //remove class on body if menu is left open and > 700
    //if attributevalue is true (menu open) and window.innerwidth < 500 add the class back
-   function removeClass(body, attributeValue) {
+   function addRemoveClass(body, attributeValue) {
       if (body.classList.contains("overlay-scroll-stop")) {
          window.addEventListener("resize", function () {
             if (window.innerWidth > 700) {
