@@ -1,8 +1,8 @@
 ---
 import { Icon } from "astro-icon";
 
-import ham from '../icons/icon-hamburger.svg'
-import close from '../icons/icon-close.svg'
+import ham from "../icons/icon-hamburger.svg";
+import close from "../icons/icon-close.svg";
 import Button from "./Button.astro";
 
 const navLinks = [
@@ -211,8 +211,7 @@ const navLinks = [
    }
 </style>
 
-<script is:inline define:vars={{ham,close}}>
-
+<script is:inline define:vars={{ ham, close }}>
    const btn = document.querySelector(".btn");
    const body = document.body;
    const btnChild = btn.children[0];
@@ -222,9 +221,9 @@ const navLinks = [
          "aria-expanded",
          btn.getAttribute("aria-expanded") === "false" ? "true" : "false"
       );
-      let attributeValue = btn.getAttribute("aria-expanded");
+      let ariaExpanded = btn.getAttribute("aria-expanded");
       imgSwap(body, btnChild);
-      addRemoveClass(body, attributeValue);
+      addRemoveClass(body, ariaExpanded);
    });
 
    function imgSwap(body, btnChild) {
@@ -241,17 +240,26 @@ const navLinks = [
    //check if body has overlay class
    //remove class on body if menu is left open and > 700
    //if attributevalue is true (menu open) and window.innerwidth < 500 add the class back
-   function addRemoveClass(body, attributeValue) {
+   function addRemoveClass(body, ariaExpanded) {
+     
       if (body.classList.contains("overlay-scroll-stop")) {
+        
          window.addEventListener("resize", function () {
             if (window.innerWidth > 700) {
+              
                body.classList.remove("overlay-scroll-stop");
-            }
+            } 
          });
       }
 
+      console.log("ariaExpanded second addEventListener:", ariaExpanded);
+
       window.addEventListener("resize", function () {
-         if (attributeValue === "true" && window.innerWidth < 500) {
+         if (ariaExpanded === "true" && window.innerWidth < 500) {
+            console.log(
+               "add overlay call resize < 500. ariaExpanded:",
+               ariaExpanded
+            );
             body.classList.add("overlay-scroll-stop");
          }
       });
