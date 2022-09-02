@@ -46,7 +46,7 @@ const navLinks = [
             <Button />
          </div>
          <button class="btn" aria-expanded="false" aria-label="Open mobile nav">
-            <!-- <img src="src/icons/icon-hamburger.svg" alt="hamburger button" /> -->
+            <!-- background image is used here /> -->
          </button>
          <!-- dropdown mobile nav -->
          <ul class="mobile-links">
@@ -64,7 +64,7 @@ const navLinks = [
    </div>
 </header>
 
-<style >
+<style>
    header {
       position: relative;
       background-color: var(--white);
@@ -137,17 +137,17 @@ const navLinks = [
    }
 
    .btn[aria-expanded="false"] {
-      background-image: url( "../icons/icon-hamburger.svg" );
+      background-image: url("../icons/icon-hamburger.svg");
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
    }
 
    .btn[aria-expanded="true"] {
-      background-image: url('../icons/icon-close.svg' );
+      background-image: url("../icons/icon-close.svg");
       background-repeat: no-repeat;
       background-position: center;
-      background-size: contain;
+      background-size: 70%;
    }
 
    /* Mobile nav end */
@@ -223,48 +223,60 @@ const navLinks = [
    }
 </style>
 
-<script is:inline define:vars={{ ham, close }}>
+<script is:inline>
    const btn = document.querySelector(".btn");
    const body = document.body;
-   const btnChild = btn.children[0];
+   let ariaExpanded;
 
    btn.addEventListener("click", function () {
       btn.setAttribute("aria-expanded", btn.getAttribute("aria-expanded") === "false" ? "true" : "false");
-      let ariaExpanded = btn.getAttribute("aria-expanded");
-      // imgSwap(body, btnChild);
-      addRemoveClass(body, ariaExpanded);
+      ariaExpanded = btn.getAttribute("aria-expanded");
+      overlayScrollStop(body, ariaExpanded);
    });
 
-   // function imgSwap(body, btnChild) {
-   //    //toggle class on body to stop scrolling when overlay is active
-   //    if (btnChild.src.match(ham)) {
-   //       body.classList.add("overlay-scroll-stop");
-   //       btnChild.src = `${close}`;
-   //    } else {
-   //       body.classList.remove("overlay-scroll-stop");
-   //       btnChild.src = `${ham}`;
-   //    }
-   // }
+   //toggle class on body to stop scrolling when overlay is active
+   function overlayScrollStop(body, ariaExpanded) {
+      if (ariaExpanded === "true") {
+         body.classList.add("overlay-scroll-stop");
+      } else {
+         body.classList.remove("overlay-scroll-stop");
+      }
+   }
+
+   window.addEventListener("resize", function () {
+      if (window.innerWidth > 700 && body.classList.contains("overlay-scroll-stop")) {
+         body.classList.remove("overlay-scroll-stop");
+      }
+   });
+
+   window.addEventListener("resize", function () {
+      if (ariaExpanded === "true" && window.innerWidth < 500) {
+         body.classList.add("overlay-scroll-stop");
+      }
+   });
 
    //check if body has overlay class
    //remove class on body if menu is left open and > 700
    //if attributevalue is true (menu open) and window.innerwidth < 500 add the class back
-   function addRemoveClass(body, ariaExpanded) {
-      if (body.classList.contains("overlay-scroll-stop")) {
-         window.addEventListener("resize", function () {
-            if (window.innerWidth > 700) {
-               body.classList.remove("overlay-scroll-stop");
-            }
-         });
-      }
+   // function addRemoveClass(body, ariaExpanded) {
+   //    if (body.classList.contains("overlay-scroll-stop")) {
+   //       window.addEventListener("resize", function () {
+   //          if (window.innerWidth > 700) {
+   //             body.classList.remove("overlay-scroll-stop");
+   //          }
+   //       });
+   //    }
 
-      console.log("ariaExpanded second addEventListener:", ariaExpanded);
+   //    console.log("ariaExpanded second addEventListener:", ariaExpanded);
 
-      window.addEventListener("resize", function () {
-         if (ariaExpanded === "true" && window.innerWidth < 500) {
-            console.log("add overlay call resize < 500. ariaExpanded:", ariaExpanded);
-            body.classList.add("overlay-scroll-stop");
-         }
-      });
-   }
+   //    window.addEventListener("resize", function () {
+   //       console.log('second event fired');
+   //       if (ariaExpanded === "true" && window.innerWidth < 500) {
+   //          console.log("add overlay call resize < 500. ariaExpanded:", ariaExpanded);
+   //          body.classList.add("overlay-scroll-stop");
+   //       }
+   //    });
+   // }
 </script>
+
+<!-- display none on overlay,mobile nav, icon-close at screens > 700 -->
